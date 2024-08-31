@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://jmix.io/schema/flowui/menu">
+
+    <menu id="application" title="msg://com.giuseppefrattura.jmix/menu.application.title" opened="true">
+        <item view="gf_User.list" title="msg://com.giuseppefrattura.jmix.view.user/UserListView.title"/>
+        <item view="gf_Payment.list" title="msg://com.giuseppefrattura.jmix.view.user/PaymentListView.title"/>
+        <item view="gf_Measure.list" title="msg://com.giuseppefrattura.jmix.view.user/MeasureListView.title"/>
+    </menu>
+
+</menu-config>

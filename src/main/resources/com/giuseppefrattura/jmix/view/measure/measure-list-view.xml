@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://MeasureListView.title"
+      focusComponent="measureDataGrid">
+    <data>
+        <collection id="measureDc"
+                    class="com.giuseppefrattura.jmix.entity.Measure">
+            <fetchPlan extends="_base">
+                <property name="date"/>
+            </fetchPlan>
+            <loader id="measureDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from gf_Measure e order by e.date]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="measureDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="createBtn" action="measureDataGrid.create"/>
+            <button id="editBtn" action="measureDataGrid.edit"/>
+            <button id="removeBtn" action="measureDataGrid.remove"/>
+            <simplePagination id="pagination" dataLoader="measureDl"/>
+        </hbox>
+        <dataGrid id="measureDataGrid"
+                  width="100%"
+                  columnReorderingAllowed="true"
+                  minHeight="20em"
+                  dataContainer="measureDc">
+            <actions>
+                <action id="create" type="list_create"/>
+                <action id="edit" type="list_edit"/>
+                <action id="remove" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="date"/>
+                <column property="weight"/>
+                <column property="vita"/>
+                <column property="petto"/>
+                <column property="coscia"/>
+                <column property="polpaccio"/>
+                <column property="vo2Max"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectBtn" action="selectAction"/>
+            <button id="discardBtn" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>

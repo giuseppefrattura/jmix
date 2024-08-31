@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://PaymentListView.title"
+      focusComponent="paymentDataGrid">
+    <data>
+        <collection id="paymentDc"
+                    class="com.giuseppefrattura.jmix.entity.Payment">
+            <fetchPlan extends="_base"/>
+            <loader id="paymentDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from gf_Payment e order by e.date]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="paymentDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="createBtn" action="paymentDataGrid.create"/>
+            <button id="editBtn" action="paymentDataGrid.edit"/>
+            <button id="removeBtn" action="paymentDataGrid.remove"/>
+            <simplePagination id="pagination" dataLoader="paymentDl"/>
+        </hbox>
+        <dataGrid id="paymentDataGrid"
+                  width="100%"
+                  columnReorderingAllowed="true"
+                  minHeight="20em"
+                  dataContainer="paymentDc">
+            <actions>
+                <action id="create" type="list_create"/>
+                <action id="edit" type="list_edit"/>
+                <action id="remove" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="date"/>
+                <column property="amount"/>
+                <column property="description"/>
+                <column property="tipo"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectBtn" action="selectAction"/>
+            <button id="discardBtn" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>
