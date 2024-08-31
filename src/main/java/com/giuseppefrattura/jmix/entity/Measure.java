@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.UUID;
 
 @JmixEntity
@@ -25,7 +26,7 @@ public class Measure implements Serializable {
     private Integer version;
 
     @Column(name = "DATE", nullable = false)
-    private Timestamp date;
+    private Date date;
 
     @Column(name = "WEIGHT", nullable = false)
     private Double weight;
@@ -62,11 +63,11 @@ public class Measure implements Serializable {
         this.version = version;
     }
 
-    public Timestamp getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://MeasureDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="measureDc"
+                  class="com.giuseppefrattura.jmix.entity.Measure">
+            <fetchPlan extends="_base"/>
+            <loader/>
+        </instance>
+    </data>
+    <actions>
+        <action id="saveAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <layout>
+        <formLayout id="form" dataContainer="measureDc">
+            <datePicker id="dateField" property="date"/>
+            <textField id="weightField" property="weight"/>
+            <textField id="vitaField" property="vita"/>
+            <textField id="pettoField" property="petto"/>
+            <comboBox id="cosciaField" property="coscia"/>
+            <textField id="polpaccioField" property="polpaccio"/>
+            <textField id="vo2MaxField" property="vo2Max"/>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseBtn" action="saveAction"/>
+            <button id="closeBtn" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>
